@@ -7,16 +7,10 @@ from django.utils.translation import (
 
 class Product(models.Model):
     name = models.CharField(
-        _("Name"), max_length=255, help_text=_("The name of the product")
+        _("Name"), max_length=255, help_text=_("Name of the product")
     )
     description = models.TextField(
-        _("Description"), help_text=_("A description of the product")
-    )
-    price = models.DecimalField(
-        _("Price"),
-        max_digits=10,
-        decimal_places=2,
-        help_text=_("The price of the product"),
+        _("Description"), help_text=_("Description of the product")
     )
     image = models.ImageField(
         _("Image"),
@@ -25,7 +19,17 @@ class Product(models.Model):
         blank=True,
         help_text=_("An image of the product"),
     )
-    owner = models.ForeignKey(
+    price = models.DecimalField(
+        _("Price"),
+        max_digits=10,
+        decimal_places=2,
+        help_text=_("Price of the product"),
+    )
+    quantity = models.PositiveIntegerField(
+        _("Quantity"),
+        help_text=_("Quantity of the product")
+    )
+    seller = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
@@ -36,12 +40,10 @@ class Product(models.Model):
     created_at = models.DateTimeField(
         _("Created At"),
         auto_now_add=True,
-        help_text=_("The date and time when the product was created"),
     )
     updated_at = models.DateTimeField(
         _("Updated At"),
         auto_now=True,
-        help_text=_("The date and time when the product was last updated"),
     )
 
     def __str__(self):
