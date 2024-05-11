@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.twitter",
+    "categories",
     "api.common",
     "api.authentication",
     "api.users",
@@ -233,8 +234,8 @@ REST_FRAMEWORK = {
 
 # Api Docs
 SPECTACULAR_SETTINGS = {
-    "TITLE": "App Name",
-    "DESCRIPTION": "app description",
+    "TITLE": "ShopSphere Api",
+    "DESCRIPTION": "The API documentation of ShopSphere",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "EXTERNAL_DOCS": {
@@ -276,7 +277,7 @@ ACCOUNT_CHANGE_EMAIL = True
 ACCOUNT_EMAIL_NOTIFICATIONS = True
 ACCOUNT_USERNAME_MIN_LENGTH = 3
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-MFA_TOTP_ISSUER = "App Name"
+MFA_TOTP_ISSUER = "ShopSphere"
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "APP": {
