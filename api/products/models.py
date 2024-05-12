@@ -3,21 +3,17 @@ from django.db import models
 from django.utils.translation import (
     gettext_lazy as _,
 )
+from django_softdelete.models import SoftDeleteModel
 
 
-class Product(models.Model):
-    name = models.CharField(
-        _("Name"), max_length=255, help_text=_("Name of the product")
+class Product(SoftDeleteModel):
+    title = models.CharField(
+        _("Title"), max_length=100, help_text=_("Title of the product")
     )
     description = models.TextField(
-        _("Description"), help_text=_("Description of the product")
-    )
-    image = models.ImageField(
-        _("Image"),
-        upload_to="products/",
-        null=True,
+        _("Description"),
         blank=True,
-        help_text=_("An image of the product"),
+        help_text=_("Description of the product")
     )
     price = models.DecimalField(
         _("Price"),
@@ -34,7 +30,7 @@ class Product(models.Model):
         on_delete=models.CASCADE,
     )
     category = models.ForeignKey(
-        "api.categories.Category",
+        "categories.Category",
         on_delete=models.CASCADE,
     )
     created_at = models.DateTimeField(

@@ -1,5 +1,9 @@
 from django.conf import settings
 from django.db import models
+from django.core.validators import (
+    MinValueValidator,
+    MaxValueValidator,
+)
 from django.utils.translation import (
     gettext_lazy as _,
 )
@@ -8,8 +12,10 @@ from django.utils.translation import (
 class Review(models.Model):
     rate = models.PositiveSmallIntegerField(
         _("Rate"),
-        min_value=1,
-        max_value=5,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(5),
+        ],
         help_text=_("Rate of the product"),
     )
     text = models.TextField(
@@ -18,7 +24,7 @@ class Review(models.Model):
         help_text=_("Text of the review"),
     )
     product = models.ForeignKey(
-        "api.products.Product",
+        "products.Product",
         on_delete=models.CASCADE,
     )
     reviewer = models.ForeignKey(

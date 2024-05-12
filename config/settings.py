@@ -70,10 +70,13 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.twitter",
+    "attachments",
     "categories",
     "api.common",
     "api.authentication",
     "api.users",
+    "api.products",
+    "api.reviews",
 ]
 
 
