@@ -7,7 +7,7 @@ from .serializers import ProductSerializer
 class ProductsView(ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = ProductSerializer
-    queryset = Product.objects.all()
+    queryset = Product.objects.prefetch_related("category", "attachments").all()
 
 
 class ProductView(RetrieveUpdateDestroyAPIView):

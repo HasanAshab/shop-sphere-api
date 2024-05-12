@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.contrib.contenttypes.fields import GenericRelation
 from django.utils.translation import (
     gettext_lazy as _,
 )
@@ -29,6 +30,9 @@ class Product(SoftDeleteModel):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+    attachments = GenericRelation(
+        "attachments.Attachment",
+    )
     category = models.ForeignKey(
         "categories.Category",
         on_delete=models.CASCADE,
@@ -43,4 +47,4 @@ class Product(SoftDeleteModel):
     )
 
     def __str__(self):
-        return self.name
+        return self.title

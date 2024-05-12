@@ -18,4 +18,8 @@ urlpatterns = [
         "api/",
         include("api.category_api.urls"),
     ),
+    path(
+        "api/",
+        include("api.products.urls"),
+    ),
 ]
