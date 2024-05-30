@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     "categories",
     "api.common",
     "api.authentication",
+    "api.accounts",
     "api.users",
     "api.products",
     "api.reviews",

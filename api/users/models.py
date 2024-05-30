@@ -47,7 +47,7 @@ class UserModel(AbstractUser):
         upload_to="uploads/avatars/",
         max_length=100,
         blank=True,
-        help_text=_("Avatar (profile picture) of the user"),
+        help_text=_("Avatar (or profile pic) of the user"),
     )
 
     @property
