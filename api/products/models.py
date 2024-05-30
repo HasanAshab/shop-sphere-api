@@ -12,9 +12,7 @@ class Product(SoftDeleteModel):
         _("Title"), max_length=100, help_text=_("Title of the product")
     )
     description = models.TextField(
-        _("Description"),
-        blank=True,
-        help_text=_("Description of the product")
+        _("Description"), blank=True, help_text=_("Description of the product")
     )
     price = models.DecimalField(
         _("Price"),
@@ -23,8 +21,7 @@ class Product(SoftDeleteModel):
         help_text=_("Price of the product"),
     )
     quantity = models.PositiveIntegerField(
-        _("Quantity"),
-        help_text=_("Quantity of the product")
+        _("Quantity"), help_text=_("Quantity of the product")
     )
     seller = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -45,6 +42,10 @@ class Product(SoftDeleteModel):
         _("Updated At"),
         auto_now=True,
     )
+
+    @property
+    def thumbnail(self):
+        return self.attachments.first()
 
     def __str__(self):
         return self.title

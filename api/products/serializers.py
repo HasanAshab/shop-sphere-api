@@ -5,7 +5,7 @@ from api.category_api.serializers import CategorySerializer
 
 class ProductSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
-    attachments = serializers.StringRelatedField(many=True, read_only=True)
+    thumbnail = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Product
@@ -15,5 +15,5 @@ class ProductSerializer(serializers.ModelSerializer):
             "price",
             "quantity",
             "category",
-            "attachments",
+            "thumbnail",
         )
