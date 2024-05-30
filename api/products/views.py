@@ -21,3 +21,9 @@ class ProductView(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+
+
+class ProductDiscountView(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()

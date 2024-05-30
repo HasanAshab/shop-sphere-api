@@ -5,6 +5,7 @@ from django.utils.translation import (
     gettext_lazy as _,
 )
 from django_softdelete.models import SoftDeleteModel
+from datetime_validators.validators import date_time_is_future_validator
 
 
 class Product(SoftDeleteModel):
@@ -49,3 +50,20 @@ class Product(SoftDeleteModel):
 
     def __str__(self):
         return self.title
+
+
+class Discount(models.Model):
+    price = models.DecimalField(
+        _("Price"),
+        max_digits=10,
+        decimal_places=2,
+        help_text=_("Price of the product"),
+    )
+
+    starting_from = models.DateTimeField(
+        _("Starting From"),
+    )
+    ending_at = models.DateTimeField(
+        _("Ending At"),
+        validators=[date_time_is_future_validator],
+    )
