@@ -12,7 +12,7 @@ urlpatterns = [
     ),
     path(
         "api/",
-        include("api.users.urls"),
+        include("api.accounts.urls"),
     ),
     path(
         "api/",
