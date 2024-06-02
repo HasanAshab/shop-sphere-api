@@ -1,11 +1,24 @@
 from rest_framework import serializers
-from .models import Product
+from attachments.models import Attachment
+from api.common.serializers import TruncatedCharField
 from api.category_api.serializers import CategorySerializer
+from .models import Product, Discount
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductAttachmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Attachment
+        fields = (
+            "attachment_file",
+            "created",
+            "modified",
+        )
+
+
+class ProductListSerializer(serializers.ModelSerializer):
+    title = TruncatedCharField(max_length=5)
     category = CategorySerializer(read_only=True)
-    thumbnail = serializers.StringRelatedField(read_only=True)
+    thumbnail = ProductAttachmentSerializer(read_only=True)
 
     class Meta:
         model = Product
@@ -16,4 +29,29 @@ class ProductSerializer(serializers.ModelSerializer):
             "quantity",
             "category",
             "thumbnail",
+            "discount_price",
         )
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(read_only=True)
+    attachments = ProductAttachmentSerializer(many=True)
+
+    class Meta:
+        model = Product
+        fields = (
+            "id",
+            "title",
+            "description",
+            "price",
+            "quantity",
+            "category",
+            "attachments",
+            "discount_price",
+        )
+
+
+class DiscountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Discount
+        fields = "__all__"

@@ -1,8 +1,9 @@
 from rest_framework.permissions import BasePermission
 from http import HTTPMethod
+from api.products.models import Product, Discount
 
 
-class IsOwnerOrReadOnly(BasePermission):
+class IsProductOwnerOrReadOnly(BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in (
             HTTPMethod.GET,
@@ -11,4 +12,10 @@ class IsOwnerOrReadOnly(BasePermission):
         ):
             return True
 
-        return obj.seller == request.user
+        if isinstance(obj, Product):
+            return obj.seller == request.user
+
+        if isinstance(obj, Discount):
+            return obj.product.seller == request.user
+
+        return False
