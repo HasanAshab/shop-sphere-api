@@ -20,7 +20,7 @@ class Product(SoftDeleteModel):
     )
     category = models.ForeignKey(
         "categories.Category",
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
     )
     title = models.CharField(
         _("Title"), max_length=100, help_text=_("Title of the product")
