@@ -72,12 +72,12 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.twitter",
     "attachments",
     "categories",
-    "api.common",
-    "api.authentication",
-    "api.accounts",
-    "api.users",
-    "api.products",
-    "api.reviews",
+    "shop_sphere.common",
+    "shop_sphere.authentication",
+    "shop_sphere.accounts",
+    "shop_sphere.users",
+    "shop_sphere.products",
+    "shop_sphere.reviews",
 ]
 
 
@@ -233,7 +233,7 @@ REST_FRAMEWORK = {
     # Test
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
     # Docs
-    "DEFAULT_SCHEMA_CLASS": "api.docs.openapi.AutoSchema",
+    "DEFAULT_SCHEMA_CLASS": "shop_sphere.docs.openapi.AutoSchema",
 }
 
 # Api Docs
@@ -308,7 +308,9 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 # All-Auth : Headless
 HEADLESS_ONLY = True
-HEADLESS_TOKEN_STRATEGY = "api.authentication.tokens.SessionTokenStrategy"
+HEADLESS_TOKEN_STRATEGY = (
+    "shop_sphere.authentication.tokens.SessionTokenStrategy"
+)
 HEADLESS_FRONTEND_URLS = {
     "account_confirm_email": "/account/verify-email/{key}",
     "account_reset_password_from_key": "/account/password/reset/{key}",
