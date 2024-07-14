@@ -7,7 +7,7 @@ class ProductFactory(factory.django.DjangoModelFactory):
     category = factory.SubFactory("api.category_api.factories.CategoryFactory")
     title = factory.Faker("sentence")
     description = factory.Faker("paragraph")
-    price = factory.Faker("pyfloat")
+    price = factory.Faker("random_int", min=1)
     quantity = factory.Faker("random_int", min=1, max=100)
 
     class Meta:

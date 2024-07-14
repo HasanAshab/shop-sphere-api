@@ -2,11 +2,15 @@ from django.urls import reverse
 from django.test import tag
 from rest_framework.test import APITestCase
 from rest_framework import status
+from api.users.factories import UserFactory
 from api.products.factories import ProductFactory
 
 
 @tag("products")
 class ProductsTestCase(APITestCase):
+    def setUp(self):
+        self.user = UserFactory()
+
     def test_list_products(self):
         ProductFactory.create_batch(3)
 
@@ -20,7 +24,7 @@ class ProductsTestCase(APITestCase):
         product = ProductFactory()
 
         url = reverse("product", kwargs={"pk": product.pk})
-        self.client.force_authenticate()
+        self.client.force_authenticate(user=self.user)
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
