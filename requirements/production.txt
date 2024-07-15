@@ -1,0 +1,3 @@
+-r base.txt
+pywin32-ctypes==0.2.2
+python-pip==1.1.1
